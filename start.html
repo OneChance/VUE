@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="components.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            {{message}}
+        </div>
+        <div id="app-2">
+            <span v-bind:title="message">
+                Hover to see title
+            </span>
+        </div>
+        <div id="app-3">
+            <p v-if="seen">show</p>
+        </div>
+        <div id="app-4">
+            <ol>
+                <li v-for="player in players">
+                    {{player.name}}
+                </li>
+            </ol>
+        </div>
+        <div id="app-5">
+            <p>{{message}}</p>
+            <button v-on:click="reverseMessage">Reverse Message</button>
+        </div>
+        <div id="app-6">
+            <p>{{message}}</p>
+            <input v-model="message">
+        </div>
+        <div id="app-7">
+            <ol>
+                <todo-item v-for="player in players" v-bind:todo="player"></todo-item>
+            </ol>
+        </div>
+    </body>
+</html>
+<script src="module.js"></script>
