@@ -23,7 +23,7 @@
             </ol>
         </div>
         <div id="app-5">
-            <p>{{message}}</p>
+            <p>{{message}}   reversed:  {{reversedMessage}}</p>
             <button v-on:click="reverseMessage">Reverse Message</button>
         </div>
         <div id="app-6">
@@ -32,7 +32,7 @@
         </div>
         <div id="app-7">
             <ol>
-                <todo-item v-for="player in players" v-bind:todo="player"></todo-item>
+                <todo-item v-for="(player,index) in players" v-bind:todo="player" v-bind:index="index" v-on:remove="players.splice(index,1)"></todo-item>
             </ol>
         </div>
     </body>
