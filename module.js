@@ -68,3 +68,26 @@ var app7 = new Vue({
 		}]
 	}
 })
+
+var childToParent = new Vue({
+	el: '#child-to-parent',
+	data: {
+		total: 0
+	},
+	methods: {
+		incrementTotal: function() {
+			this.total += 1;
+		}
+	}
+})
+
+var slotTest = new Vue({
+	el: '#slot-parent'
+})
+
+var multiComponent = new Vue({
+	el: '#multi-component',
+	data: {
+		currentView: 'component-a'
+	}
+})

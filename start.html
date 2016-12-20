@@ -32,8 +32,27 @@
         </div>
         <div id="app-7">
             <ol>
-                <todo-item v-for="(player,index) in players" v-bind:todo="player" v-bind:index="index" v-on:remove="players.splice(index,1)"></todo-item>
+                <todo-item v-for="(player,index) in players" :todo="player" :index="index" v-on:remove="players.splice(index,1)"></todo-item>
             </ol>
+        </div>
+        <div id="child-to-parent">
+            <p>{{total}}</p>
+            <button-counter @increment="incrementTotal"></button-counter>
+            <button-counter @increment="incrementTotal"></button-counter>
+        </div>
+        <div id="slot-parent">
+            <h1>parent title</h1>
+            <slot-child>
+            <h1 slot="header">Hello child</h1>
+            <h3 slot="footer">see you later child</h3>
+            </slot-child>
+        </div>
+        <div id="multi-component">
+            <keep-alive>
+            <component :is="currentView">
+            
+            </component>
+            </keep-alive>
         </div>
     </body>
 </html>
