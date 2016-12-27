@@ -2,6 +2,7 @@
     <head>
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <script src="components.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div id="app">
@@ -53,6 +54,21 @@
             
             </component>
             </keep-alive>
+        </div>
+        <div id="transition-test">
+            <transition name="fade" mode="out-in">
+                <button :key="docState" @click="changeState">
+                {{buttonMessage}}
+                </button>
+            </transition>
+        </div>
+        <!--多组件过渡-->
+        <div id="multi-comp-trans">
+            <input type="radio" value="v-a" id="a" name="view" @click="view='v-a'"><label for="a">A</label>
+            <input type="radio" value="v-b" id="b" name="view" @click="view='v-b'"><label for="b">B</label>
+            <transition name="component-fade" mode="out-in">
+                <component :is="view"></component>
+            </transition>
         </div>
     </body>
 </html>

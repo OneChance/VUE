@@ -91,3 +91,42 @@ var multiComponent = new Vue({
 		currentView: 'component-a'
 	}
 })
+
+var transitionTest = new Vue({
+	el:'#transition-test',
+	data:{
+		docState:'saved'
+	},
+	computed:{
+		buttonMessage:function(){
+			switch(this.docState){
+				case 'saved':return 'Edit'
+				case 'edited':return 'Save'
+			}
+		}
+	},
+	methods:{
+		changeState:function(){
+			switch(this.docState){
+				case 'saved':this.docState = 'edited';break;
+				case 'edited':this.docState = 'saved';break;
+			}
+		}
+	}
+})
+
+
+var multiCompTrans = new Vue({
+  el: '#multi-comp-trans',
+  data: {
+    view: 'v-a'
+  },
+  components: {
+    'v-a': {
+      template: '<div>Component A</div>'
+    },
+    'v-b': {
+      template: '<div>Component B</div>'
+    }
+  }
+})
