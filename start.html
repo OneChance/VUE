@@ -1,75 +1,85 @@
 <html>
-    <head>
-        <script src="https://unpkg.com/vue/dist/vue.js"></script>
-        <script src="components.js"></script>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div id="app">
-            {{message}}
-        </div>
-        <div id="app-2">
-            <span v-bind:title="message">
-                Hover to see title
-            </span>
-        </div>
-        <div id="app-3">
-            <p v-if="seen">show</p>
-        </div>
-        <div id="app-4">
-            <ol>
-                <li v-for="player in players">
-                    {{player.name}}
-                </li>
-            </ol>
-        </div>
-        <div id="app-5">
-            <p>{{message}}   reversed:  {{reversedMessage}}</p>
-            <button v-on:click="reverseMessage">Reverse Message</button>
-        </div>
-        <div id="app-6">
-            <p>{{message}}</p>
-            <input v-model="message">
-        </div>
-        <div id="app-7">
-            <ol>
-                <todo-item v-for="(player,index) in players" :todo="player" :index="index" v-on:remove="players.splice(index,1)"></todo-item>
-            </ol>
-        </div>
-        <div id="child-to-parent">
-            <p>{{total}}</p>
-            <button-counter @increment="incrementTotal"></button-counter>
-            <button-counter @increment="incrementTotal"></button-counter>
-        </div>
-        <div id="slot-parent">
-            <h1>parent title</h1>
-            <slot-child>
-            <h1 slot="header">Hello child</h1>
-            <h3 slot="footer">see you later child</h3>
-            </slot-child>
-        </div>
-        <div id="multi-component">
-            <keep-alive>
-            <component :is="currentView">
-            
-            </component>
-            </keep-alive>
-        </div>
-        <div id="transition-test">
-            <transition name="fade" mode="out-in">
-                <button :key="docState" @click="changeState">
-                {{buttonMessage}}
-                </button>
-            </transition>
-        </div>
-        <!--多组件过渡-->
-        <div id="multi-comp-trans">
-            <input type="radio" value="v-a" id="a" name="view" @click="view='v-a'"><label for="a">A</label>
-            <input type="radio" value="v-b" id="b" name="view" @click="view='v-b'"><label for="b">B</label>
-            <transition name="component-fade" mode="out-in">
-                <component :is="view"></component>
-            </transition>
-        </div>
-    </body>
+	<head>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="components.js"></script>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div id="app">
+			{{message}}
+		</div>
+		<div id="app-2">
+			<span v-bind:title="message">
+				Hover to see title
+			</span>
+		</div>
+		<div id="app-3">
+			<p v-if="seen">show</p>
+		</div>
+		<div id="app-4">
+			<ol>
+				<li v-for="player in players">
+					{{player.name}}
+				</li>
+			</ol>
+		</div>
+		<div id="app-5">
+			<p>{{message}}   reversed:  {{reversedMessage}}</p>
+			<button v-on:click="reverseMessage">Reverse Message</button>
+		</div>
+		<div id="app-6">
+			<p>{{message}}</p>
+			<input v-model="message">
+		</div>
+		<div id="app-7">
+			<ol>
+				<todo-item v-for="(player,index) in players" :todo="player" :index="index" v-on:remove="players.splice(index,1)"></todo-item>
+			</ol>
+		</div>
+		<div id="child-to-parent">
+			<p>{{total}}</p>
+			<button-counter @increment="incrementTotal"></button-counter>
+			<button-counter @increment="incrementTotal"></button-counter>
+		</div>
+		<div id="slot-parent">
+			<h1>parent title</h1>
+			<slot-child>
+			<h1 slot="header">Hello child</h1>
+			<h3 slot="footer">see you later child</h3>
+			</slot-child>
+		</div>
+		<div id="multi-component">
+			<keep-alive>
+			<component :is="currentView">
+			
+			</component>
+			</keep-alive>
+		</div>
+		<div id="transition-test">
+			<transition name="fade" mode="out-in">
+				<button :key="docState" @click="changeState">
+				{{buttonMessage}}
+				</button>
+			</transition>
+		</div>
+		<!--多组件过渡-->
+		<div id="multi-comp-trans">
+			<input type="radio" value="v-a" id="a" name="view" @click="view='v-a'"><label for="a">A</label>
+			<input type="radio" value="v-b" id="b" name="view" @click="view='v-b'"><label for="b">B</label>
+			<transition name="component-fade" mode="out-in">
+				<component :is="view"></component>
+			</transition>
+		</div>
+		<!--列表过渡-->
+		<div id="list-trans">
+			<button @click="add">Add</button>
+			<button @click="remove">Remove</button>
+			<transition-group name="list" tag="p">
+				<span v-for="item in items" :key="item" class="list-item">
+					{{item}}
+				</span>
+			</transition-group>
+		</div>
+	</body>
 </html>
 <script src="module.js"></script>

@@ -29,10 +29,31 @@ Vue.component('slot-child', {
 })
 
 
-Vue.component('component-a',{
-	template:'<h4>a</h4>'
+Vue.component('component-a', {
+	template: '<h4>a</h4>'
 })
 
-Vue.component('component-b',{
-	template:'<h4>b</h4>'
+Vue.component('component-b', {
+	template: '<h4>b</h4>'
 })
+
+//mixin
+var myMixin = {
+	created: function() {
+		this.hello()
+	},
+	methods: {
+		hello: function() {
+			console.log('hook from mixin');
+		}
+	}
+};
+
+var Component = Vue.extend({
+	mixins: [myMixin],
+	created:function(){
+		console.log('hook from component');
+	}
+})
+
+var component = new Component();

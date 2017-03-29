@@ -93,23 +93,29 @@ var multiComponent = new Vue({
 })
 
 var transitionTest = new Vue({
-	el:'#transition-test',
-	data:{
-		docState:'saved'
+	el: '#transition-test',
+	data: {
+		docState: 'saved'
 	},
-	computed:{
-		buttonMessage:function(){
-			switch(this.docState){
-				case 'saved':return 'Edit'
-				case 'edited':return 'Save'
+	computed: {
+		buttonMessage: function() {
+			switch (this.docState) {
+				case 'saved':
+					return 'Edit'
+				case 'edited':
+					return 'Save'
 			}
 		}
 	},
-	methods:{
-		changeState:function(){
-			switch(this.docState){
-				case 'saved':this.docState = 'edited';break;
-				case 'edited':this.docState = 'saved';break;
+	methods: {
+		changeState: function() {
+			switch (this.docState) {
+				case 'saved':
+					this.docState = 'edited';
+					break;
+				case 'edited':
+					this.docState = 'saved';
+					break;
 			}
 		}
 	}
@@ -117,16 +123,35 @@ var transitionTest = new Vue({
 
 
 var multiCompTrans = new Vue({
-  el: '#multi-comp-trans',
-  data: {
-    view: 'v-a'
-  },
-  components: {
-    'v-a': {
-      template: '<div>Component A</div>'
-    },
-    'v-b': {
-      template: '<div>Component B</div>'
-    }
-  }
+	el: '#multi-comp-trans',
+	data: {
+		view: 'v-a'
+	},
+	components: {
+		'v-a': {
+			template: '<div>Component A</div>'
+		},
+		'v-b': {
+			template: '<div>Component B</div>'
+		}
+	}
+})
+
+var listTrans = new Vue({
+	el: "#list-trans",
+	data: {
+		items: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+		nextNum: 10
+	},
+	methods: {
+		randomIndex: function() {
+			return Math.floor(Math.random() * this.items.length)
+		},
+		add: function() {
+			this.items.splice(this.randomIndex(), 0, this.nextNum++)
+		},
+		remove: function() {
+			this.items.splice(this.randomIndex(), 1)
+		}
+	}
 })
